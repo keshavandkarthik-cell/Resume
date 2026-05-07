@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keshav Karthik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --white:    #fafaf8;
+      --off:      #f2f0eb;
+      --ink:      #111110;
+      --ink-mid:  #6b6860;
+      --ink-lo:   #b5b2ac;
+      --rule:     #e4e1db;
+      --accent:   #1a1a18;
+      --red:      #c0392b;
+      --font-d:   'DM Serif Display', serif;
+      --font-b:   'DM Sans', sans-serif;
+      --font-m:   'DM Mono', monospace;
+      --ease:     cubic-bezier(0.22,1,0.36,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family: var(--font-b);
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 56px;
+    }
+    .nav-name {
+      font-family: var(--font-m); font-size: .7rem; font-weight: 500;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      font-family: var(--font-m); font-size: .62rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--ink-mid); text-decoration: none;
+      transition: color .18s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-tag {
+      font-family: var(--font-m); font-size: .58rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--white);
+      background: var(--ink); padding: 5px 12px; border-radius: 4px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1100px; margin: 0 auto;
+      padding: 100px 56px 80px;
+      display: grid; grid-template-columns: 1fr 380px; gap: 80px; align-items: end;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-left {}
+    .hero-eyebrow {
+      font-family: var(--font-m); font-size: .62rem; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--ink-mid); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 1px; background: var(--ink-mid);
+    }
+    .hero-name {
+      font-family: var(--font-d); font-size: clamp(3.5rem, 8vw, 6.5rem);
+      font-weight: 400; line-height: .95; color: var(--ink);
+      letter-spacing: -.02em; margin-bottom: 32px;
+    }
+    .hero-name em { font-style: italic; color: var(--ink-mid); }
+    .hero-desc {
+      font-size: 1rem; color: var(--ink-mid); line-height: 1.85;
+      max-width: 480px; margin-bottom: 40px;
+    }
+    .hero-desc strong { color: var(--ink); font-weight: 400; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-dark {
+      font-family: var(--font-m); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+      padding: 12px 24px; background: var(--ink); color: var(--white); border: none;
+      border-radius: 4px; cursor: pointer; text-decoration: none; transition: .2s var(--ease);
+    }
+    .btn-dark:hover { background: #2a2a28; }
+    .btn-outline {
+      font-family: var(--font-m); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+      padding: 12px 24px; background: transparent; color: var(--ink);
+      border: 1px solid var(--rule); border-radius: 4px; cursor: pointer;
+      text-decoration: none; transition: .2s var(--ease);
+    }
+    .btn-outline:hover { border-color: var(--ink); }
+
+    .hero-right {}
+    .hero-card {
+      background: var(--off); border: 1px solid var(--rule); border-radius: 12px;
+      padding: 28px; margin-bottom: 12px;
+    }
+    .hero-card:last-child { margin-bottom: 0; }
+    .card-label {
+      font-family: var(--font-m); font-size: .56rem; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--ink-lo); margin-bottom: 8px;
+    }
+    .card-value {
+      font-family: var(--font-d); font-size: 1.2rem; color: var(--ink); line-height: 1.3;
+    }
+    .card-value em { font-style: italic; color: var(--ink-mid); }
+    .card-sub {
+      font-size: .75rem; color: var(--ink-mid); margin-top: 4px; line-height: 1.6;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+    }
+    .stat {
+      flex: 1; padding: 40px 56px;
+      border-right: 1px solid var(--rule);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-d); font-size: 2.8rem; color: var(--ink);
+      line-height: 1; margin-bottom: 6px;
+    }
+    .stat-label {
+      font-family: var(--font-m); font-size: .58rem; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--ink-lo);
+    }
+
+    /* ── SECTION ── */
+    .section {
+      max-width: 1100px; margin: 0 auto;
+      padding: 80px 56px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 56px; padding-bottom: 20px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-title {
+      font-family: var(--font-d); font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400; color: var(--ink);
+    }
+    .section-num {
+      font-family: var(--font-m); font-size: .6rem; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--ink-lo);
+    }
+
+    /* ── STORY ── */
+    .story-layout {
+      display: grid; grid-template-columns: 260px 1fr; gap: 64px;
+    }
+    .story-toc { position: sticky; top: 80px; align-self: start; }
+    .toc-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 0; border-bottom: 1px solid var(--rule);
+      cursor: default;
+    }
+    .toc-num {
+      font-family: var(--font-m); font-size: .58rem; letter-spacing: .1em;
+      color: var(--ink-lo); padding-top: 3px; flex-shrink: 0;
+    }
+    .toc-text { font-size: .82rem; color: var(--ink-mid); line-height: 1.5; }
+    .toc-text strong { color: var(--ink); font-weight: 400; display: block; margin-bottom: 2px; }
+
+    .story-entries {}
+    .story-entry {
+      padding: 36px 0; border-bottom: 1px solid var(--rule);
+      display: grid; grid-template-columns: 180px 1fr; gap: 40px;
+    }
+    .story-entry:last-child { border-bottom: none; padding-bottom: 0; }
+    .entry-meta {}
+    .entry-tag {
+      font-family: var(--font-m); font-size: .56rem; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--ink-lo); margin-bottom: 8px;
+    }
+    .entry-product {
+      font-family: var(--font-d); font-size: 1.4rem; color: var(--ink); margin-bottom: 6px;
+    }
+    .entry-url {
+      font-family: var(--font-m); font-size: .58rem; color: var(--ink-lo);
+      text-decoration: none;
+    }
+    .entry-url:hover { color: var(--ink); }
+    .entry-body {}
+    .entry-headline {
+      font-family: var(--font-d); font-size: 1.15rem; font-style: italic;
+      color: var(--ink); margin-bottom: 12px; line-height: 1.4;
+    }
+    .entry-text {
+      font-size: .82rem; color: var(--ink-mid); line-height: 1.9; margin-bottom: 16px;
+    }
+    .entry-text:last-child { margin-bottom: 0; }
+    .entry-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+    .ebadge {
+      font-family: var(--font-m); font-size: .54rem; letter-spacing: .1em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 3px;
+    }
+    .ebadge-dark { background: var(--ink); color: var(--white); }
+    .ebadge-light { background: var(--off); border: 1px solid var(--rule); color: var(--ink-mid); }
+    .ebadge-red { background: #fdf0ee; border: 1px solid #f0c0bb; color: var(--red); }
+
+    /* ── ACHIEVEMENTS ── */
+    .ach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .ach-card {
+      padding: 32px; border: 1px solid var(--rule); border-radius: 8px;
+      background: var(--white); transition: .2s var(--ease); position: relative;
+    }
+    .ach-card:hover { border-color: var(--ink); background: var(--off); }
+    .ach-year {
+      font-family: var(--font-m); font-size: .56rem; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--ink-lo); margin-bottom: 10px;
+    }
+    .ach-title {
+      font-family: var(--font-d); font-size: 1.3rem; color: var(--ink);
+      margin-bottom: 8px; line-height: 1.2;
+    }
+    .ach-body { font-size: .78rem; color: var(--ink-mid); line-height: 1.8; }
+    .ach-medal {
+      position: absolute; top: 28px; right: 28px;
+      font-family: var(--font-m); font-size: .56rem; letter-spacing: .1em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 3px;
+    }
+    .medal-bronze { background: #fdf4ec; border: 1px solid #e8c99a; color: #8b5e1e; }
+    .medal-finalist { background: var(--off); border: 1px solid var(--rule); color: var(--ink-mid); }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+    .about-text { font-size: .88rem; color: var(--ink-mid); line-height: 2; }
+    .about-text p { margin-bottom: 18px; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--ink); font-weight: 400; }
+    .about-right {}
+    .about-fact {
+      padding: 20px 0; border-bottom: 1px solid var(--rule);
+      display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    }
+    .about-fact:first-child { border-top: 1px solid var(--rule); }
+    .fact-key {
+      font-family: var(--font-m); font-size: .58rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--ink-lo);
+    }
+    .fact-val { font-size: .82rem; color: var(--ink); text-align: right; }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 1100px; margin: 0 auto;
+      padding: 48px 56px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+    }
+    .footer-left {}
+    .footer-name {
+      font-family: var(--font-d); font-size: 1.1rem; color: var(--ink); margin-bottom: 4px;
+    }
+    .footer-sub {
+      font-family: var(--font-m); font-size: .56rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--ink-lo);
+    }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a {
+      font-family: var(--font-m); font-size: .58rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--ink-lo); text-decoration: none; transition: color .18s;
+    }
+    .footer-links a:hover { color: var(--ink); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 60px 24px 48px; gap: 40px; }
+      .hero-right { display: none; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat { min-width: 50%; padding: 28px 24px; }
+      .section { padding: 60px 24px; }
+      .story-layout { grid-template-columns: 1fr; }
+      .story-toc { display: none; }
+      .story-entry { grid-template-columns: 1fr; gap: 16px; }
+      .ach-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      footer { padding: 36px 24px; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-name">Keshav Karthik</a>
+    <div class="nav-links">
+      <a href="#story">Story</a>
+      <a href="#work">Work</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#about">About</a>
+    </div>
+    <span class="nav-tag">Open to opportunities</span>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Builder · Student · Kuala Lumpur</div>
+      <h1 class="hero-name">Keshav<br/><em>Karthik</em></h1>
+      <p class="hero-desc">
+        I haven't finished middle school yet — and I've already shipped
+        <strong>three live products</strong> used by real people.
+        Not side projects. Not demos. Tools built because
+        <strong>I personally needed them</strong> and they didn't exist.
+      </p>
+      <div class="hero-cta">
+        <a href="#work" class="btn-dark">See my work</a>
+        <a href="#story" class="btn-outline">Read the story</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="card-label">Currently building</div>
+        <div class="card-value">Veda Network</div>
+        <div class="card-sub">A suite of free AI tools — study, legal, and support — for people who need them most.</div>
+      </div>
+      <div class="hero-card">
+        <div class="card-label">Based in</div>
+        <div class="card-value">Kuala Lumpur, <em>Malaysia</em></div>
+        <div class="card-sub">Indian, studying at Maz International School. Year 9.</div>
+      </div>
+      <div class="hero-card">
+        <div class="card-label">Latest recognition</div>
+        <div class="card-value">Coolest Projects MY 2025</div>
+        <div class="card-sub">National finalist. Also: Bronze, Coding Olympiad 2026.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Live products</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">82+</div>
+      <div class="stat-label">Real users</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Year 9</div>
+      <div class="stat-label">Still in middle school</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Free to use</div>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <div class="section" id="story">
+    <div class="section-head">
+      <h2 class="section-title">Why I build.</h2>
+      <span class="section-num">01 / Story</span>
+    </div>
+    <div class="story-layout">
+      <div class="story-toc">
+        <div class="toc-item">
+          <span class="toc-num">01</span>
+          <div class="toc-text"><strong>Veda Study</strong>I couldn't study the way school wanted me to.</div>
+        </div>
+        <div class="toc-item">
+          <span class="toc-num">02</span>
+          <div class="toc-text"><strong>AuraAI</strong>My brother deserved better software.</div>
+        </div>
+        <div class="toc-item">
+          <span class="toc-num">03</span>
+          <div class="toc-text"><strong>Pact</strong>I wanted to understand the law.</div>
+        </div>
+        <div class="toc-item">
+          <span class="toc-num">04</span>
+          <div class="toc-text"><strong>The principle</strong>Everything is free. That's not an accident.</div>
+        </div>
+      </div>
+      <div class="story-entries">
+        <div class="story-entry">
+          <div class="entry-meta">
+            <div class="entry-tag">Chapter 01</div>
+            <div class="entry-product">Veda Study</div>
+            <a href="https://study.veda-net.com" class="entry-url">study.veda-net.com ↗</a>
+          </div>
+          <div class="entry-body">
+            <div class="entry-headline">"I couldn't study the way school wanted me to."</div>
+            <p class="entry-text">Traditional studying wasn't working for me. I needed something adaptive — something that explained things differently, helped me make flashcards, and actually made me feel like I was progressing. So I built it.</p>
+            <p class="entry-text">Veda started as a personal tool. It grew into something 82+ students now use every day, with homework help, a focus timer, a study planner, daily challenges, and an AI companion.</p>
+            <div class="entry-badges">
+              <span class="ebadge ebadge-light">Team project</span>
+              <span class="ebadge ebadge-dark">Code by me</span>
+              <span class="ebadge ebadge-light">82+ users</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-entry">
+          <div class="entry-meta">
+            <div class="entry-tag">Chapter 02</div>
+            <div class="entry-product">AuraAI</div>
+            <a href="https://auraai.veda-net.com" class="entry-url">auraai.veda-net.com ↗</a>
+          </div>
+          <div class="entry-body">
+            <div class="entry-headline">"My brother deserved a space built for him."</div>
+            <p class="entry-text">Growing up with an autistic sibling means understanding that most software isn't designed with them in mind — the noise, the unpredictability, the lack of patience. Most apps feel hostile if you process the world differently.</p>
+            <p class="entry-text">AuraAI is the opposite. Calm, consistent, genuinely supportive. A safe haven to have fun, learn, and always have someone to talk to. Built for him. For people like him.</p>
+            <div class="entry-badges">
+              <span class="ebadge ebadge-light">Team project</span>
+              <span class="ebadge ebadge-light">Autism support</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-entry">
+          <div class="entry-meta">
+            <div class="entry-tag">Chapter 03</div>
+            <div class="entry-product">Pact</div>
+            <a href="https://pact.veda-net.com" class="entry-url">pact.veda-net.com ↗</a>
+          </div>
+          <div class="entry-body">
+            <div class="entry-headline">"I wanted to understand the law — so I built a lawyer."</div>
+            <p class="entry-text">Law has always fascinated me. But legal documents are deliberately opaque — written to confuse, not inform. Pact is my attempt to fix that for Malaysia.</p>
+            <p class="entry-text">It drafts real contracts under the Contracts Act 1950, scans agreements for dangerous clauses, and explains your rights in plain English. No degree required. No lawyer needed.</p>
+            <div class="entry-badges">
+              <span class="ebadge ebadge-dark">Solo project</span>
+              <span class="ebadge ebadge-light">Malaysian law</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-entry">
+          <div class="entry-meta">
+            <div class="entry-tag">The principle</div>
+            <div class="entry-product">All of it</div>
+          </div>
+          <div class="entry-body">
+            <div class="entry-headline">"Everything is free. That's not an accident."</div>
+            <p class="entry-text">The problems I'm solving hit hardest for people who can least afford another subscription. A student who can't keep up in school. A family navigating an autism diagnosis. Someone trying to read a contract they signed.</p>
+            <p class="entry-text">Every product under Veda Network is completely free — not freemium, not ad-supported. That's the principle everything is built on.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACHIEVEMENTS -->
+  <div class="section" id="achievements">
+    <div class="section-head">
+      <h2 class="section-title">Achievements.</h2>
+      <span class="section-num">02 / Recognition</span>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-card">
+        <span class="ach-medal medal-finalist">Finalist</span>
+        <div class="ach-year">2025</div>
+        <div class="ach-title">Coolest Projects Malaysia</div>
+        <p class="ach-body">National finalist at Malaysia's leading showcase for young innovators and student-built technology. Recognised for the Veda Network suite and its real-world impact on students and communities.</p>
+      </div>
+      <div class="ach-card">
+        <span class="ach-medal medal-bronze">Bronze</span>
+        <div class="ach-year">2026</div>
+        <div class="ach-title">Coding Olympiad</div>
+        <p class="ach-body">Bronze medalist at the Coding Olympiad 2026. Competing while actively shipping real products — because the best way to get better at building is to keep building.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section" id="about">
+    <div class="section-head">
+      <h2 class="section-title">About me.</h2>
+      <span class="section-num">03 / About</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm <strong>Keshav Karthik</strong> — an Indian student living in Kuala Lumpur, Malaysia, currently in Year 9 at Maz International School. I haven't graduated middle school yet, but I've already shipped three live products used by real people.</p>
+        <p>I build because I've had to. Every tool I've made started as something I personally needed — or something someone I love needed — and didn't exist anywhere. That's been my design brief for every project: <strong>build the thing that should already exist.</strong></p>
+        <p>I'm interested in law, education, and making technology work for people it usually ignores. The Veda Network is my attempt to do all three at once.</p>
+        <p>Everything I build is free. Not as a business strategy — as a value.</p>
+      </div>
+      <div class="about-right">
+        <div class="about-fact">
+          <span class="fact-key">School</span>
+          <span class="fact-val">Maz International School, KL</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-key">Year</span>
+          <span class="fact-val">Year 9 (Middle school)</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-key">Based</span>
+          <span class="fact-val">Kuala Lumpur, Malaysia</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-key">Origin</span>
+          <span class="fact-val">Indian</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-key">Interests</span>
+          <span class="fact-val">Law, education, software</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-key">Products live</span>
+          <span class="fact-val">3 (all free)</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-key">Users</span>
+          <span class="fact-val">82+ and growing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <div class="footer-name">Keshav Karthik</div>
+      <div class="footer-sub">Builder · Kuala Lumpur · veda-net.com</div>
+    </div>
+    <div class="footer-links">
+      <a href="#story">Story</a>
+      <a href="#work">Work</a>
+      <a href="#achievements">Achievements</a>
+      <a href="https://study.veda-net.com">Veda Study</a>
+      <a href="https://pact.veda-net.com">Pact</a>
+      <a href="https://auraai.veda-net.com">AuraAI</a>
+    </div>
+  </footer>
+
+</body>
+</html>
